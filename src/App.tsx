@@ -196,7 +196,7 @@ function App() {
   const toasterId = useId('toaster');
   const { dispatchToast } = useToastController(toasterId);
 
-  const avatarUrl = 'https://assets-eo.krnl64.win/avatar.png';
+  const avatarUrl = 'https://assets.krnl64.win/avatar.png';
 
   const links = [
     {
