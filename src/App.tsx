@@ -35,12 +35,12 @@ import {
   WeatherMoon24Filled,
   Person24Regular,
   Money24Regular,
-  VehicleTruck24Regular,
-  Diamond24Regular,
-  Circle24Regular,
   Payment24Regular,
   Image24Regular,
   Dismiss24Regular,
+  VehicleTruck24Regular,
+  Diamond24Regular,
+  Circle24Regular,
 } from '@fluentui/react-icons';
 import './App.css';
 
@@ -219,6 +219,207 @@ function App() {
     }
   ];
 
+  const renderDonateContent = () => {
+    if (!selectedRecipient) {
+      return (
+        <>
+          <Card
+            className={styles.donateOption}
+            onClick={() => setSelectedRecipient('xiaoyuan151')}
+          >
+            <div className={styles.donateIcon}><Person24Regular /></div>
+            <Text weight="semibold" size={500}>XiaoYuan151</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
+              加密货币地址
+            </Text>
+          </Card>
+
+          <Card
+            className={styles.donateOption}
+            onClick={() => setSelectedRecipient('ntkrnl')}
+          >
+            <div className={styles.donateIcon}><Person24Regular /></div>
+            <Text weight="semibold" size={500}>NtKrnl</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
+              二维码 / BTC
+            </Text>
+          </Card>
+
+          <Card
+            className={styles.donateOption}
+            onClick={() => setSelectedRecipient('nicrozoft')}
+          >
+            <div className={styles.donateIcon}><Person24Regular /></div>
+            <Text weight="semibold" size={500}>Nicrozoft</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
+              爱发电 / B 站充电
+            </Text>
+          </Card>
+        </>
+      );
+    }
+
+    else if (selectedRecipient === 'xiaoyuan151') {
+      return (
+        <>
+          {/* BTC */}
+          <Card
+            className={styles.donateOption}
+            onClick={() => {
+              navigator.clipboard.writeText(
+                '3DPDaQ63u7nKJpc1jYgrPQTmu5vfgaWpUB'
+              );
+              dispatchToast(
+                <Toast><ToastTitle>BTC 地址已复制！</ToastTitle></Toast>,
+                { intent: 'success' }
+              );
+            }}
+          >
+            <div className={styles.donateIcon}><Money24Regular /></div>
+            <Text weight="semibold" size={500}>Bitcoin (BTC)</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
+              3DPDaQ63u7nKJpc1jYgrPQTmu5vfgaWpUB
+            </Text>
+          </Card>
+
+          {/* DOGE */}
+          <Card
+            className={styles.donateOption}
+            onClick={() => {
+              navigator.clipboard.writeText(
+                'DDr7NdvdtzxsQTuesq5UDNXT8WQAUEotjH'
+              );
+              dispatchToast(
+                <Toast><ToastTitle>DOGE 地址已复制！</ToastTitle></Toast>,
+                { intent: 'success' }
+              );
+            }}
+          >
+            <div className={styles.donateIcon}><VehicleTruck24Regular /></div>
+            <Text weight="semibold" size={500}>Dogecoin (DOGE)</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
+              DDr7NdvdtzxsQTuesq5UDNXT8WQAUEotjH
+            </Text>
+          </Card>
+
+          {/* ETH */}
+          <Card
+            className={styles.donateOption}
+            onClick={() => {
+              navigator.clipboard.writeText(
+                '0xA57F5F34f6a0B8f44C3363dBA6Dd996f801A0500'
+              );
+              dispatchToast(
+                <Toast><ToastTitle>ETH 地址已复制！</ToastTitle></Toast>,
+                { intent: 'success' }
+              );
+            }}
+          >
+            <div className={styles.donateIcon}><Diamond24Regular /></div>
+            <Text weight="semibold" size={500}>Ethereum (ETH)</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
+              0xA57F5F34f6a0B8f44C3363dBA6Dd996f801A0500
+            </Text>
+          </Card>
+
+          {/* TRX */}
+          <Card
+            className={styles.donateOption}
+            onClick={() => {
+              navigator.clipboard.writeText(
+                'TUVwPUf1NMFUbeuLQ91Qa4fPDWzZsxEwyF'
+              );
+              dispatchToast(
+                <Toast><ToastTitle>TRX 地址已复制！</ToastTitle></Toast>,
+                { intent: 'success' }
+              );
+            }}
+          >
+            <div className={styles.donateIcon}><Circle24Regular /></div>
+            <Text weight="semibold" size={500}>TRON (TRX)</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
+              TUVwPUf1NMFUbeuLQ91Qa4fPDWzZsxEwyF
+            </Text>
+          </Card>
+
+          <Button appearance="subtle" onClick={() => setSelectedRecipient(null)} style={{ width: '100%' }}>
+            返回
+          </Button>
+        </>
+      );
+    }
+
+    else if (selectedRecipient === 'ntkrnl') {
+      return (
+        <>
+          <Card
+            className={styles.donateOption}
+            onClick={() => setQrcodeImage('/alipay.png')}
+          >
+            <div className={styles.donateIcon}><Payment24Regular /></div>
+            <Text weight="semibold" size={500}>支付宝</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
+              点击查看二维码
+            </Text>
+          </Card>
+
+          <Card
+            className={styles.donateOption}
+            onClick={() => setQrcodeImage('/wechat.png')}
+          >
+            <div className={styles.donateIcon}><Image24Regular /></div>
+            <Text weight="semibold" size={500}>微信支付</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
+              点击查看二维码
+            </Text>
+          </Card>
+
+          <Button appearance="subtle" onClick={() => setSelectedRecipient(null)} style={{ width: '100%' }}>
+            返回
+          </Button>
+        </>
+      );
+    }
+
+    else if (selectedRecipient === 'nicrozoft') {
+      return (
+        <>
+          <Card
+            className={styles.donateOption}
+            onClick={() => window.open('https://afdian.com/a/nicrozoft', '_blank')}
+          >
+            <div className={styles.donateIcon}><Heart24Regular /></div>
+            <Text weight="semibold" size={500}>爱发电</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
+              支持 Nicrozoft
+            </Text>
+          </Card>
+
+          <Card
+            className={styles.donateOption}
+            onClick={() => window.open(
+              'https://space.bilibili.com/3546641434937345',
+              '_blank'
+            )}
+          >
+            <div className={styles.donateIcon}><Payment24Regular /></div>
+            <Text weight="semibold" size={500}>B 站充电</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
+              前往 Bilibili
+            </Text>
+          </Card>
+
+          <Button appearance="subtle" onClick={() => setSelectedRecipient(null)} style={{ width: '100%' }}>
+            返回
+          </Button>
+        </>
+      );
+    }
+
+    return null;
+  };
+
+
   return (
     <FluentProvider theme={isDark ? webDarkTheme : webLightTheme}>
       <div className={styles.root}>
@@ -339,166 +540,9 @@ function App() {
                 </Body1>
 
                 <div className={styles.donateMethod}>
-                  {!selectedRecipient ? (
-                    <>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => setSelectedRecipient('xiaoyuan151')}
-                      >
-                        <div className={styles.donateIcon}><Person24Regular /></div>
-                        <Text weight="semibold" size={500}>XiaoYuan151</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
-                          查看加密货币地址
-                        </Text>
-                      </Card>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => setSelectedRecipient('ntkrnl')}
-                      >
-                        <div className={styles.donateIcon}><Person24Regular /></div>
-                        <Text weight="semibold" size={500}>NtKrnl</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
-                          查看二维码和BTC
-                        </Text>
-                      </Card>
-                    </>
-                  ) : selectedRecipient === 'xiaoyuan151' ? (
-                    <>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => {
-                          navigator.clipboard.writeText('3DPDaQ63u7nKJpc1jYgrPQTmu5vfgaWpUB').then(() => {
-                            dispatchToast(
-                              <Toast>
-                                <ToastTitle>BTC 地址已复制！</ToastTitle>
-                              </Toast>,
-                              { intent: 'success' }
-                            );
-                          });
-                        }}
-                      >
-                        <div className={styles.donateIcon}><Money24Regular /></div>
-                        <Text weight="semibold" size={500}>Bitcoin (BTC)</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
-                          3DPDaQ63u7nKJpc1jYgrPQTmu5vfgaWpUB
-                        </Text>
-                      </Card>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => {
-                          navigator.clipboard.writeText('DDr7NdvdtzxsQTuesq5UDNXT8WQAUEotjH').then(() => {
-                            dispatchToast(
-                              <Toast>
-                                <ToastTitle>DOGE 地址已复制！</ToastTitle>
-                              </Toast>,
-                              { intent: 'success' }
-                            );
-                          });
-                        }}
-                      >
-                        <div className={styles.donateIcon}><VehicleTruck24Regular /></div>
-                        <Text weight="semibold" size={500}>Dogecoin (DOGE)</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
-                          DDr7NdvdtzxsQTuesq5UDNXT8WQAUEotjH
-                        </Text>
-                      </Card>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => {
-                          navigator.clipboard.writeText('0xA57F5F34f6a0B8f44C3363dBA6Dd996f801A0500').then(() => {
-                            dispatchToast(
-                              <Toast>
-                                <ToastTitle>ETH 地址已复制！</ToastTitle>
-                              </Toast>,
-                              { intent: 'success' }
-                            );
-                          });
-                        }}
-                      >
-                        <div className={styles.donateIcon}><Diamond24Regular /></div>
-                        <Text weight="semibold" size={500}>Ethereum (ETH)</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
-                          0xA57F5F34f6a0B8f44C3363dBA6Dd996f801A0500
-                        </Text>
-                      </Card>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => {
-                          navigator.clipboard.writeText('TUVwPUf1NMFUbeuLQ91Qa4fPDWzZsxEwyF').then(() => {
-                            dispatchToast(
-                              <Toast>
-                                <ToastTitle>TRX 地址已复制！</ToastTitle>
-                              </Toast>,
-                              { intent: 'success' }
-                            );
-                          });
-                        }}
-                      >
-                        <div className={styles.donateIcon}><Circle24Regular /></div>
-                        <Text weight="semibold" size={500}>TRON (TRX)</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
-                          TUVwPUf1NMFUbeuLQ91Qa4fPDWzZsxEwyF
-                        </Text>
-                      </Card>
-                      <Button 
-                        appearance="subtle" 
-                        onClick={() => setSelectedRecipient(null)}
-                        style={{ marginTop: '0.5rem', width: '100%' }}
-                      >
-                        返回
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => {
-                          navigator.clipboard.writeText('bc1qjffdph9z08tjh4x5fap4nvxyakwxra2at5gu3p').then(() => {
-                            dispatchToast(
-                              <Toast>
-                                <ToastTitle>BTC 地址已复制！</ToastTitle>
-                              </Toast>,
-                              { intent: 'success' }
-                            );
-                          });
-                        }}
-                      >
-                        <div className={styles.donateIcon}><Money24Regular /></div>
-                        <Text weight="semibold" size={500}>Bitcoin (BTC)</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2, wordBreak: 'break-all' }}>
-                          bc1qjffdph9z08tjh4x5fap4nvxyakwxra2at5gu3p
-                        </Text>
-                      </Card>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => setQrcodeImage('/alipay.png')}
-                      >
-                        <div className={styles.donateIcon}><Payment24Regular /></div>
-                        <Text weight="semibold" size={500}>支付宝</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
-                          点击查看付款二维码
-                        </Text>
-                      </Card>
-                      <Card 
-                        className={styles.donateOption}
-                        onClick={() => setQrcodeImage('/wechat.png')}
-                      >
-                        <div className={styles.donateIcon}><Image24Regular /></div>
-                        <Text weight="semibold" size={500}>微信支付</Text>
-                        <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
-                          点击查看付款二维码
-                        </Text>
-                      </Card>
-                      <Button 
-                        appearance="subtle" 
-                        onClick={() => setSelectedRecipient(null)}
-                        style={{ marginTop: '0.5rem', width: '100%' }}
-                      >
-                        返回
-                      </Button>
-                    </>
-                  )}
+                  {renderDonateContent()}
                 </div>
+
               </DialogContent>
             </DialogBody>
           </DialogSurface>
@@ -531,9 +575,9 @@ function App() {
                 <div style={{ minHeight: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {imageLoading && <Spinner label="加载中..." />}
                   {qrcodeImage && (
-                    <img 
-                      src={qrcodeImage} 
-                      alt="QR Code" 
+                    <img
+                      src={qrcodeImage}
+                      alt="QR Code"
                       className={styles.qrcodeImage}
                       onLoad={() => setImageLoading(false)}
                       onLoadStart={() => setImageLoading(true)}
