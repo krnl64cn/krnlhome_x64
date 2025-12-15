@@ -241,7 +241,7 @@ function App() {
             <div className={styles.donateIcon}><Person24Regular /></div>
             <Text weight="semibold" size={500}>NtKrnl</Text>
             <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
-              二维码 / BTC
+              二维码 / 爱发电
             </Text>
           </Card>
 
@@ -352,6 +352,21 @@ function App() {
     else if (selectedRecipient === 'ntkrnl') {
       return (
         <>
+
+          <Card
+            className={styles.donateOption}
+            onClick={() => window.open(
+              'https://afdian.com/a/ntkrnl32',
+              '_blank'
+            )}
+          >
+            <div className={styles.donateIcon}><Payment24Regular /></div>
+            <Text weight="semibold" size={500}>爱发电</Text>
+            <Text size={300} style={{ color: tokens.colorNeutralForeground2 }}>
+              微信、支付宝均可
+            </Text>
+          </Card>
+
           <Card
             className={styles.donateOption}
             onClick={() => setQrcodeImage('/alipay.png')}
