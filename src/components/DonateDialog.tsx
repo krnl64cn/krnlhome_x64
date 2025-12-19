@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import {
   Dialog, DialogSurface, DialogTitle, DialogBody, DialogContent,
-  Button, Body1, Spinner, makeStyles, Toast, ToastTitle
+  Button, Body1, Spinner, makeStyles
 } from '@fluentui/react-components';
 import {
-  Heart24Regular, Dismiss24Regular, Person24Regular, Money24Regular,
-  VehicleTruck24Regular, Diamond24Regular, Circle24Regular, 
+  Heart24Regular, Dismiss24Regular, Person24Regular,
   Payment24Regular, Image24Regular
 } from '@fluentui/react-icons';
 import { DonateOptionCard } from './DonateOptionCard';
@@ -21,7 +20,7 @@ interface DonateDialogProps {
   dispatchToast: (content: React.ReactNode, options?: any) => void;
 }
 
-export const DonateDialog = ({ open, onOpenChange, dispatchToast }: DonateDialogProps) => {
+export const DonateDialog = ({ open, onOpenChange}: DonateDialogProps) => {
   const styles = useStyles();
   const [selectedRecipient, setSelectedRecipient] = useState<string | null>(null);
   const [qrcodeImage, setQrcodeImage] = useState<string | null>(null);
@@ -32,20 +31,11 @@ export const DonateDialog = ({ open, onOpenChange, dispatchToast }: DonateDialog
     setSelectedRecipient(null);
   };
 
-  const copy = (text: string, label: string) => {
-    navigator.clipboard.writeText(text);
-    dispatchToast(<Toast><ToastTitle>{label} 已复制！</ToastTitle></Toast>, { intent: 'success' });
-  };
-
   const renderContent = () => {
     // 1. 第一层：选择收款人
     if (!selectedRecipient) {
       return (
         <>
-          <DonateOptionCard 
-            icon={<Person24Regular />} title="XiaoYuan151" description="加密货币地址"
-            onClick={() => setSelectedRecipient('xiaoyuan151')} 
-          />
           <DonateOptionCard 
             icon={<Person24Regular />} title="NtKrnl" description="二维码 / 爱发电"
             onClick={() => setSelectedRecipient('ntkrnl')} 
@@ -54,31 +44,6 @@ export const DonateDialog = ({ open, onOpenChange, dispatchToast }: DonateDialog
             icon={<Person24Regular />} title="Nicrozoft" description="爱发电 / B 站充电"
             onClick={() => setSelectedRecipient('nicrozoft')} 
           />
-        </>
-      );
-    }
-
-    // 2. 第二层：XiaoYuan151 的加密货币
-    if (selectedRecipient === 'xiaoyuan151') {
-      return (
-        <>
-          <DonateOptionCard 
-            icon={<Money24Regular />} title="Bitcoin (BTC)" description="3DPDaQ63u7nKJpc1jYgrPQTmu5vfgaWpUB"
-            onClick={() => copy('3DPDaQ63u7nKJpc1jYgrPQTmu5vfgaWpUB', 'BTC 地址')}
-          />
-          <DonateOptionCard 
-            icon={<VehicleTruck24Regular />} title="Dogecoin (DOGE)" description="DDr7NdvdtzxsQTuesq5UDNXT8WQAUEotjH"
-            onClick={() => copy('DDr7NdvdtzxsQTuesq5UDNXT8WQAUEotjH', 'DOGE 地址')}
-          />
-          <DonateOptionCard 
-            icon={<Diamond24Regular />} title="Ethereum (ETH)" description="0xA57F5F34f6a0B8f44C3363dBA6Dd996f801A0500"
-            onClick={() => copy('0xA57F5F34f6a0B8f44C3363dBA6Dd996f801A0500', 'ETH 地址')}
-          />
-          <DonateOptionCard 
-            icon={<Circle24Regular />} title="TRON (TRX)" description="TUVwPUf1NMFUbeuLQ91Qa4fPDWzZsxEwyF"
-            onClick={() => copy('TUVwPUf1NMFUbeuLQ91Qa4fPDWzZsxEwyF', 'TRX 地址')}
-          />
-          <Button appearance="subtle" onClick={() => setSelectedRecipient(null)}>返回</Button>
         </>
       );
     }
